@@ -1,0 +1,50 @@
+<form [formGroup]="checkoutForm" (ngSubmit)="submitForm()">
+  <mat-form-field appearance="outline">
+    <mat-label>Full name</mat-label>
+    <input
+      matInput
+      type="text"
+      placeholder="(minimum 6 characters)"
+      required
+      minlength="6"
+      maxlength="32"
+      formControlName="fullname"
+    />
+  </mat-form-field>
+  <br />
+  <mat-form-field appearance="outline">
+    <mat-label>Address</mat-label>
+    <input
+      matInput
+      name="address"
+      placeholder="(minimum 10 characters)"
+      required
+      minlength="10"
+      maxlength="50"
+      formControlName="address"
+    />
+  </mat-form-field>
+  <br />
+  <mat-form-field appearance="outline">
+    <mat-label>Credit Card number</mat-label>
+    <input
+      matInput
+      type="text"
+      placeholder="(16-digit number)"
+      required
+      minlength="16"
+      maxlength="16"
+      formControlName="ccnumber"
+    />
+  </mat-form-field>
+  <br />
+
+  <button
+    mat-raised-button
+    type="submit"
+    color="primary"
+    [disabled]="!checkoutForm.valid"
+  >
+    Submit
+  </button>
+</form>

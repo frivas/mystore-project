@@ -1,0 +1,18 @@
+<div class="container">
+  <mat-card class="mat-elevation-z2" class="item">
+    <mat-card-header>
+      <mat-card-title>{{ productDetail.name }}</mat-card-title>
+    </mat-card-header>
+      <img class="image" src="{{ productDetail.url }}" />
+    <mat-card-content>
+      <p>{{ productDetail.description }}</p>
+      <p>${{ productDetail.price }}</p>
+      <p *ngIf="productDetail.quantity <= 5">Few Units Left. More on its way!</p>
+      <a routerLink="/"><- Back to the main page</a>
+    </mat-card-content>
+    <mat-card-footer>
+      <app-product-form [product]="productDetail"></app-product-form>
+    </mat-card-footer>
+  </mat-card>
+
+</div>

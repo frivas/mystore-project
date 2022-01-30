@@ -1,0 +1,22 @@
+<mat-form-field appearance="outline">
+  <mat-label>Quantity</mat-label>
+  <input
+    matInput
+    name="quantity"
+    type="number"
+    placeholder="0"
+    min="0"
+    max="{{ product.quantity }}"
+    [(ngModel)]="quantity"
+    (ngModelChange)="onChange(quantity)"
+  />
+</mat-form-field>
+<br />
+<!-- Validate Quantity > 0-->
+<button
+  mat-raised-button
+  color="primary"
+  (click)="addProductToCart(product, quantity)"
+>
+  Add to Cart
+</button>

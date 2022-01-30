@@ -1,0 +1,9 @@
+.image {
+  width: 200px;
+  height: 300px;
+}
+.container {
+  display: flex;
+  margin: 10px;
+  padding: 1rem;
+}

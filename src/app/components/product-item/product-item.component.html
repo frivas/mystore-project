@@ -1,0 +1,16 @@
+<mat-card class="item">
+  <mat-card-header>
+    <mat-card-title>{{ product.name }}</mat-card-title>
+  </mat-card-header>
+  <a routerLink="/product/{{ product.id }}">
+    <img class="image" src="{{ product.url }}" />
+  </a>
+  <mat-card-content>
+    <p>${{ product.price }}</p>
+    <p *ngIf="product.quantity <= 5" class="unitsLeft">Few Units Left. More on its way!</p>
+    <p *ngIf="product.quantity > 5"><br></p>
+  </mat-card-content>
+  <mat-card-footer>
+    <app-product-form [product]="product"></app-product-form>
+  </mat-card-footer>
+</mat-card>
