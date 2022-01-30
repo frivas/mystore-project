@@ -1,43 +1,69 @@
-<div class="container" fxLayout="center center">
-<app-checkout-form *ngIf="cart.numberOfProducts != 0"></app-checkout-form>
-<h2 *ngIf="cart.numberOfProducts != 0">Total: ${{ cart.totalPrice }}</h2>
-<mat-grid-list cols="1" rowHeight="1:2">
-  <h2 *ngIf="cart.numberOfProducts == 0">Cart is empty.</h2>
-  <mat-grid-tile *ngFor="let product of cart.products">
-    <mat-card class="mat-elevation-z0 outline">
-      <mat-card-header>
-        <mat-card-title>{{ product.name }}</mat-card-title>
-        <button
-          mat-icon-button
-          color="primary"
-          (click)="deleteProduct(product)"
-        >
-          <mat-icon>delete_outline</mat-icon>
-        </button>
-      </mat-card-header>
-      <a routerLink="/product/{{ product.id }}">
-        <img class="image" src="{{ product.url }}" />
-      </a>
-      <mat-card-content>
-        <p>${{ product.price }}</p>
-      </mat-card-content>
-      <mat-card-footer>
-        <mat-form-field appearance="outline">
-          <mat-label>Quantity</mat-label>
-          <input
-            matInput
-            name="quantity"
-            type="number"
-            placeholder="{{ setQuantity(product.quantityInCart || 0) }}"
-            min="0"
-            max="{{ product.quantity }}"
-            [(ngModel)]="quantity"
-            (ngModelChange)="onChange(product, quantity)"
-          />
-        </mat-form-field>
-      </mat-card-footer>
-    </mat-card>
-  </mat-grid-tile>
-  <br />
-</mat-grid-list>
+<div class="container"
+  fxLayout="row reverse wrap"
+  fxLayoutAlign="center center"
+  fxLayoutGap="15px grid"
+  fxFlexAlign="center"
+  fxLayoutAlign.gt-md="center center"
+  fxLayoutGap.gt-md="15px grid"
+  fxFlexAlign.gt-md="center">
+  <div fxLayout="column wrap"
+    fxLayoutAlign="center center">
+    <h2 *ngIf="cart.numberOfProducts == 0">Cart is empty.</h2>
+    <br />
+    <a routerLink="/">
+      <button
+        mat-raised-button
+        color="primary"
+        *ngIf="cart.numberOfProducts == 0">Back to products list</button>
+    </a>
+  </div>
+
+  <div fxLayout="column wrap"
+    fxLayoutAlign="center center"
+    fxLayoutGap="30px grid"
+    fxFlexAlign="center"
+    fxLayoutAlign.gt-md="center center"
+    fxLayoutGap.gt-md="50px grid"
+    fxFlexAlign.gt-md="center">
+    <div *ngFor="let product of cart.products">
+      <mat-card class="mat-elevation-z0 outline item">
+        <mat-card-header>
+          <mat-card-title>{{ product.name }}</mat-card-title>
+          <span fxFlex></span>
+          <button
+            mat-icon-button
+            color="primary"
+            (click)="deleteProduct(product)"
+          >
+            <mat-icon>delete_outline</mat-icon>
+          </button>
+        </mat-card-header>
+        <a routerLink="/product/{{ product.id }}">
+          <img class="image" src="{{ product.url }}" />
+        </a>
+        <mat-card-content>
+          <p>${{ product.price }}</p>
+        </mat-card-content>
+        <mat-card-footer>
+          <mat-form-field appearance="outline">
+            <mat-label>Quantity</mat-label>
+            <input
+              matInput
+              name="quantity"
+              type="number"
+              placeholder="{{ setQuantity(product.quantityInCart || 0) }}"
+              min="0"
+              max="{{ product.quantity }}"
+              [(ngModel)]="quantity"
+              (ngModelChange)="onChange(product, quantity)"
+            />
+          </mat-form-field>
+        </mat-card-footer>
+      </mat-card>
+    </div>
+  </div>
+  <div>
+    <app-checkout-form *ngIf="cart.numberOfProducts != 0"></app-checkout-form>
+    <h2 *ngIf="cart.numberOfProducts != 0">Total: ${{ cart.totalPrice }}</h2>
+  </div>
 </div>

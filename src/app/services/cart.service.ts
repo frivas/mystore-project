@@ -17,18 +17,7 @@ export class CartService {
     private utilsService: UtilsService
   ) {
     this.cart = {
-      products: [
-        {
-          id: 1,
-          description: '',
-          name: '',
-          price: 0,
-          priceInCart: 0,
-          quantity: 0,
-          quantityInCart: 0,
-          url: ''
-        }
-      ],
+      products: [],
       totalPrice: 0,
       numberOfProducts: 0,
       confirmed: false
@@ -47,7 +36,10 @@ export class CartService {
       );
       product.quantityInCart =
         quantity <= product.quantity ? quantity : product.quantity;
-      product.priceInCart = product.quantityInCart * product.price;
+      product.priceInCart = this.truncateDecimals(
+        product.quantityInCart * product.price,
+        2
+      );
 
       if (itemAlreadyExists) {
         productIndex = this.cart.products.findIndex((p) => p.id == product.id);
@@ -59,13 +51,16 @@ export class CartService {
         productIndex = this.cart.products.length - 1;
       }
 
-      this.cart.totalPrice = this.cart.products
+      const temporaryPrice = this.cart.products
         .map((p) => p.priceInCart)
         .reduce((x, y) => x + y, 0);
+
+      this.cart.totalPrice = this.truncateDecimals(temporaryPrice, 2);
 
       this.cart.numberOfProducts = this.cart.products
         .map((p) => p.quantityInCart)
         .reduce((x, y) => x + y, 0);
+
       console.log(`Cart From Service => ${JSON.stringify(this.cart, null, 2)}`);
       this.utilsService.openSnackBar(`Your cart has been modified.`);
     } else {
@@ -77,9 +72,10 @@ export class CartService {
     const filtered = this.cart.products.filter((p) => p.id != product.id);
     this.cart.products = filtered;
 
-    this.cart.totalPrice = this.cart.products
+    const temporaryPrice = this.cart.products
       .map((p) => p.priceInCart)
       .reduce((x, y) => x + y, 0);
+    this.cart.totalPrice = this.truncateDecimals(temporaryPrice, 2);
 
     this.cart.numberOfProducts = this.cart.products
       .map((p) => p.quantityInCart)
@@ -103,6 +99,26 @@ export class CartService {
   }
 
   getCurrentCart(): Cart {
+    if (this.cart.numberOfProducts === 0) {
+      this.cart.products = [];
+    }
     return this.cart;
+  }
+
+  resetCart(): void {
+    this.cart = {
+      products: [],
+      totalPrice: 0,
+      numberOfProducts: 0,
+      confirmed: false
+    };
+  }
+
+  truncateDecimals(number: number, digits: number): number {
+    const multiplier = Math.pow(10, digits);
+    const adjustedNum = number * multiplier;
+    const truncatedNum = Math[adjustedNum < 0 ? 'ceil' : 'floor'](adjustedNum);
+
+    return truncatedNum / multiplier;
   }
 }

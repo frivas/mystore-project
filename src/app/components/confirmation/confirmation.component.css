@@ -1,0 +1,14 @@
+.container {
+  display: flex;
+  margin: 10px;
+  padding: 5rem;
+}
+
+h1 {
+  font-size: 40px;
+  color: green;
+}
+
+p {
+  font-size: 15px;
+}

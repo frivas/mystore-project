@@ -1,9 +1,17 @@
-.image {
-  width: 200px;
-  height: 300px;
-}
 .container {
   display: flex;
   margin: 10px;
   padding: 1rem;
+}
+
+.image {
+  width: 200px;
+  height: 300px;
+}
+
+.item {
+  padding: 1em 1em 2em 1em;
+  justify-content: space-evenly;
+  align-content: center;
+  text-align: center;
 }

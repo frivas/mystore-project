@@ -21,5 +21,6 @@ export class ConfirmationComponent implements OnInit {
 
   ngOnInit(): void {
     this.cart = this.cartService.getCurrentCart();
+    this.cartService.resetCart();
   }
 }
