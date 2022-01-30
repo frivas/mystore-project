@@ -1,6 +1,7 @@
 export class Product {
   id: number;
   description: string;
+  favorite: boolean;
   name: string;
   price: number;
   priceInCart: number;
@@ -11,6 +12,7 @@ export class Product {
   constructor() {
     this.id = 0;
     this.description = '';
+    this.favorite = false;
     this.name = '';
     this.price = 0;
     this.priceInCart = 0;

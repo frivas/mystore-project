@@ -27,6 +27,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { ProductFormComponent } from './components/product-form/product-form.component';
 import { CheckoutFormComponent } from './components/checkout-form/checkout-form.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { FavoriteButtonComponent } from './components/favorite-button/favorite-button.component';
+import { FavoriteListComponent } from './components/favorite-list/favorite-list.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     ContactComponent,
     AboutComponent,
     ProductFormComponent,
-    CheckoutFormComponent
+    CheckoutFormComponent,
+    FavoriteButtonComponent,
+    FavoriteListComponent
   ],
   imports: [
     BrowserModule,

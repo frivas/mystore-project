@@ -9,9 +9,8 @@ import { Product } from 'src/app/models/Product';
 })
 export class ProductListComponent implements OnInit {
   productList: Product[] = [];
-  regularDistribution = 100 / 3;
 
-  constructor(private productService: ProductService) {}
+  constructor(private productService: ProductService) { }
 
   ngOnInit(): void {
     this.productService.getProductList().subscribe((data: Product[]) => {

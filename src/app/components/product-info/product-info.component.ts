@@ -19,6 +19,7 @@ export class ProductInfoComponent implements OnInit {
     this.productDetail = {
       id: 0,
       description: '',
+      favorite: false,
       name: '',
       price: 0,
       priceInCart: 0,

@@ -43,12 +43,13 @@ export class CheckoutFormComponent implements OnInit {
       ccnumber: new FormControl('', [
         Validators.required,
         Validators.minLength(16),
-        Validators.maxLength(16)
+        Validators.maxLength(16),
+        Validators.pattern('^[0-9]*$')
       ])
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   submitForm(): void {
     this.cart = this.cartService.getCurrentCart();

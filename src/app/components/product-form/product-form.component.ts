@@ -15,6 +15,7 @@ export class ProductFormComponent implements OnInit {
     this.product = {
       id: 0,
       description: '',
+      favorite: false,
       name: '',
       price: 0,
       priceInCart: 0,
@@ -25,7 +26,7 @@ export class ProductFormComponent implements OnInit {
     this.quantity = 0;
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   addProductToCart(product: Product, quantity: number): void {
     this.cartService.addProductToCart(product, quantity);

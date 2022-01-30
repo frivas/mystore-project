@@ -1,6 +1,8 @@
 <mat-card class="item">
   <mat-card-header>
     <mat-card-title>{{ product.name }}</mat-card-title>
+    <span fxFlex></span>
+    <app-favorite (selectedChange)="favorite($event)"></app-favorite>
   </mat-card-header>
   <a routerLink="/product/{{ product.id }}">
     <img class="image" src="{{ product.url }}" />
